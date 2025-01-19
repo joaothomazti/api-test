@@ -9,6 +9,7 @@
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
 - [Como baixar o projeto](#-como-baixar-o-projeto)
 - [Casos de Teste Implementados](#-casos-de-teste-implementados)
+- [Integração Contínua](#-integração-contínua)
 
 ## 🔖&nbsp; Sobre
 
@@ -86,4 +87,18 @@ A seguir, uma explicação dos casos de teste implementados:
 - **Excluir Usuário Inexistente**:  
   Tenta excluir um usuário que não existe e verifica se a resposta contém a mensagem de erro "Nenhum registro excluído".
 
+## 🚀 Integração Contínua
+
+Este projeto está configurado para rodar testes automatizados em um pipeline de integração contínua. O arquivo de configuração do CI é o `.github/workflows/ci.yml`, que define o processo automatizado para executar os testes a cada push ou pull request para o repositório.
+
+### O que acontece no pipeline de CI:
+
+1. **Execução de Testes**:  
+   O CI executa o Cypress para rodar todos os testes definidos no projeto sempre que houver um push ou pull request. Ele verifica se todos os testes estão passando para garantir que a qualidade do código seja mantida.
+
+2. **Ambiente de Execução**:  
+   O pipeline é executado em um ambiente controlado onde as dependências são instaladas automaticamente e os testes são executados em modo headless.
+
+3. **Notificações e Resultados**:  
+   O status da execução dos testes (sucesso ou falha) é notificado no GitHub, e o log completo dos testes pode ser acessado através da interface do GitHub Actions.
 ---
