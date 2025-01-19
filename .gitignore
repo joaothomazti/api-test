@@ -1,0 +1,12 @@
+# Ignorar a pasta node_modules, que contém dependências de pacotes
+node_modules/
+
+# Ignorar o arquivo de bloqueio do npm
+package-lock.json
+
+# Ignorar arquivos e pastas gerados pelo Cypress
+cypress/videos/
+cypress/screenshots/
+cypress/results/
+cypress/fixtures/
+cypress/downloads
