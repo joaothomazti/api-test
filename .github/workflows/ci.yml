@@ -33,4 +33,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: test-results
-        path: cypress/reports/mochawesome.json
+        path: cypress/reports/mochawesome.html
