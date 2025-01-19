@@ -9,4 +9,5 @@ cypress/videos/
 cypress/screenshots/
 cypress/results/
 cypress/fixtures/
-cypress/downloads
+cypress/downloads/
+cypress/reports/
