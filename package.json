@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress run",
-    "test:headless": "cypress run --headless",
-    "generate:report": "npx marge cypress/reports/mochawesome.json --reportDir cypress/reports --reportFilename mochawesome.html && npx marge cypress/reports/mochawesome_001.json --reportDir cypress/reports --reportFilename mochawesome_001.html"
+    "test:headless": "cypress run --headless"
   },
   "keywords": [],
   "author": "",
