@@ -28,8 +28,12 @@ jobs:
       run: |
         npx cypress run --headless
 
+    - name: Generate HTML report
+      run: |
+        npx marge cypress/reports/mochawesome.json --reportDir cypress/reports --reportFilename mochawesome.html && npx marge cypress/reports/mochawesome_001.json --reportDir cypress/reports --reportFilename mochawesome_001.html
+
     - name: Upload HTML Report
       uses: actions/upload-artifact@v4
       with:
-        name: mochawesome-html-report
-        path: cypress/reports/*.html
+        name: test-results
+        path: cypress/reports/mochawesome.html
