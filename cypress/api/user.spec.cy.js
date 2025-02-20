@@ -1,11 +1,13 @@
 import { faker } from '@faker-js/faker';
-import { createUser, deleteUser, getAllUsers, getUser, updateUser, userData } from '../support/service/userService';
+import { createUser, deleteUser, getAllUsers, getUser, updateUser } from '../support/service/userService';
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from '../support/messages';
 import { verifyResponseBody } from '../support/utils';
+import { userData } from '../support/mocks';
 
 describe('Create User API', () => {
 
   const nonExistentUserId = 'Teste_id';
+  
 
   it('Deve criar um usuário com sucesso', () => {
     createUser(userData).then((response) => {

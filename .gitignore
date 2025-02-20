@@ -8,6 +8,5 @@ package-lock.json
 cypress/videos/
 cypress/screenshots/
 cypress/results/
-cypress/fixtures/
 cypress/downloads/
 cypress/reports/
