@@ -16,4 +16,5 @@ export const SUCCESS_MESSAGES = {
   userCreated: 'Cadastro realizado com sucesso',
   userUpdated: 'Registro alterado com sucesso',
   userDeleted: 'Registro excluído com sucesso',
+  ProductCreated: 'Cadastro realizado com sucesso'
 }

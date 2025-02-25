@@ -1,11 +1,27 @@
-import { faker } from '@faker-js/faker';
 
-export const userData = {
-  nome: faker.person.fullName(),
-  email: faker.internet.email(),
-  password: faker.internet.password(),
-  administrador: "true"
-};
+export const createProduct = (generateProductData, token) => {
+  return cy.request({
+    method: 'POST', 
+    url: '/produtos',
+    body: generateProductData,
+    headers: {
+      Authorization: `${token}`
+    }
+  })
+}
+
+export const loginUser = (loginData) => {
+  return cy.request({
+    method: 'POST',
+    url: '/login',
+    body: loginData,
+  }).then((response => {
+    expect(response.status).to.eq(200);
+    const token = response.body.authorization;
+    Cypress.env('authToken', token)
+    return token;
+  }))
+}
 
 export const createUser  = (userData) => {
     return cy.request({
@@ -16,12 +32,7 @@ export const createUser  = (userData) => {
     });
   };
 
-  export const getAllUsers = () => {
-    return cy.request({
-        method: 'GET',
-        url: '/usuarios',
-    });
-  };
+  export const getAllUsers = () => cy.request('GET', '/usuarios')
 
   export const getUser = (userId) => {
     return cy.request({
