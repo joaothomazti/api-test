@@ -1,62 +1,48 @@
+const USERS_URL = '/usuarios';
+const PRODUCTS_URL = '/produtos';
+const LOGIN_URL = '/login';
+
+const makeRequest = (method, endpoint, options = {}) => {
+  const { body, headers, failOnStatusCode = false } = options;
+
+  return cy.request({
+    method,
+    url: `${endpoint}`,
+    body,
+    headers,
+    failOnStatusCode
+  });
+};
 
 export const createProduct = (generateProductData, token) => {
-  return cy.request({
-    method: 'POST', 
-    url: '/produtos',
+  return makeRequest('POST', PRODUCTS_URL, {
     body: generateProductData,
-    headers: {
-      Authorization: `${token}`
-    }
+    headers: { Authorization: token }
   })
 }
 
 export const loginUser = (loginData) => {
-  return cy.request({
-    method: 'POST',
-    url: '/login',
-    body: loginData,
-  }).then((response => {
-    expect(response.status).to.eq(200);
-    const token = response.body.authorization;
-    Cypress.env('authToken', token)
-    return token;
-  }))
+  return makeRequest('POST', LOGIN_URL, { body: loginData })
+    .then((response) => {
+      expect(response.status).to.eq(200);
+      Cypress.env('authToken', response.body.authorization);
+    });
 }
 
-export const createUser  = (userData) => {
-    return cy.request({
-      method: 'POST',
-      url: '/usuarios',
-      body: userData,
-      failOnStatusCode: false
-    });
-  };
+export const createUser = (userData) => {
+  return makeRequest('POST', USERS_URL, {
+    body: userData,
+  });
+};
 
-  export const getAllUsers = () => cy.request('GET', '/usuarios')
+export const getAllUsers = () => { return makeRequest('GET', USERS_URL); }
 
-  export const getUser = (userId) => {
-    return cy.request({
-        method: 'GET',
-        url: `/usuarios/${userId}`,
-        failOnStatusCode: false
-    });
-  };
-  
-  export const updateUser = (userId, user) => {
-    return cy.request({
-        method: 'PUT',
-        url: `/usuarios/${userId}`,
-        body: user,
-        failOnStatusCode: false
-    });
-  };
+export const getUser = (userId) => { return makeRequest('GET', `${USERS_URL}/${userId}`) }
 
-  export const deleteUser = (userId) => {
-    return cy.request({
-        method: 'DELETE',
-        url: `/usuarios/${userId}`,
-        failOnStatusCode: false
-    });
-  };
+export const updateUser = (userId, user) => {
+return makeRequest('PUT', `${USERS_URL}/${userId}`, {
+    body: user
+  });
+};
 
-  
+export const deleteUser = (userId) => { return makeRequest('DELETE', `${USERS_URL}/${userId}`) }
